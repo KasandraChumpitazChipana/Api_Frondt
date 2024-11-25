@@ -20,10 +20,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #DOCKER HUB
       - name: Log in to Docker Hub
-        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
   
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/ms_content_moderator_fe:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/ms_content_moderator_fe:latest .
   
       - name: Push Docker image to Docker Hub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/ms_content_moderator_fe:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/ms_content_moderator_fe:latest
