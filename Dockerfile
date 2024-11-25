@@ -1,33 +1,20 @@
-# Usa una versión reciente de Node.js
-FROM node:16
+# Use Node.js 18 (or a later version)
+FROM node:18
 
-# Crear el directorio /app dentro del contenedor
-RUN mkdir -p /app
-
-# Establecer /app como el directorio de trabajo
+# Create and set the working directory
 WORKDIR /app
 
-# Copiar package.json y package-lock.json para instalar las dependencias
+# Copy package.json files
 COPY package*.json /app
 
-# Instalar dependencias de manera confiable con npm ci
+# Install dependencies (you might want to use npm install instead of npm ci if not using a lock file)
 RUN npm ci
 
-# Copiar el resto de la aplicación
+# Copy the rest of the application files
 COPY . /app
 
-# Verificar la versión de node y npm
-RUN node -v
-RUN npm -v
-
-# Mostrar el contenido del directorio (para ver si todo se copió correctamente)
-RUN ls -al /app
-
-# Ejecutar el build en modo producción con salida detallada
-RUN npm run build --prod --verbose
-
-# Exponer el puerto 4200 (puerto de Angular por defecto)
+# Expose the application port (if needed)
 EXPOSE 4200
 
-# Configurar el contenedor para ejecutar la aplicación con npm start
+# Run the application (if required)
 CMD ["npm", "start"]
