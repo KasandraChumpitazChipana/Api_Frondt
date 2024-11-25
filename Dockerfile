@@ -1,4 +1,5 @@
-FROM node:16  # O usa la versión más reciente que prefieras
+# Usa una versión reciente de Node.js
+FROM node:16
 
 # Crear el directorio /app dentro del contenedor
 RUN mkdir -p /app
